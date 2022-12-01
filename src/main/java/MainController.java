@@ -1,13 +1,15 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import model.Chronometer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Runnable {
+public class MainController implements Runnable, Initializable {
     private Chronometer c;
     public MainController() {
         c = new Chronometer();
@@ -20,12 +22,14 @@ public class MainController implements Runnable {
 
         @FXML
         private Button stopButton;
-
         @FXML
         private Button resetButton;
-
         @FXML
-        private Button exitButton;
+        private ImageView imgPlay;
+        @FXML
+        private ImageView imgStop;
+        @FXML
+        private ImageView imgPause;
 
 
         @FXML
@@ -48,12 +52,28 @@ public class MainController implements Runnable {
             c.setStop(false);
             Thread t = new Thread(this);
             t.start();
+            this.startButton.setDisable(true);
+            this.stopButton.setDisable(false);
+            this.resetButton.setDisable(true);
+            this.imgPlay.setVisible(false);
+            this.imgPause.setVisible(true);
+            this.imgPlay.setDisable(true);
+            this.imgPause.setDisable(false);
+            this.imgStop.setVisible(false);
 
         }
 
         @FXML
         void stopButtonAction() {
             c.setStop(true);
+            this.startButton.setDisable(false);
+            this.stopButton.setDisable(true);
+            this.resetButton.setDisable(false);
+            this.imgPlay.setVisible(true);
+            this.imgPause.setVisible(false);
+            this.imgPlay.setDisable(false);
+            this.imgPause.setDisable(true);
+            this.imgStop.setVisible(true);
         }
 
         @Override
@@ -80,4 +100,18 @@ public class MainController implements Runnable {
                 }
             }
         }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.imgPlay.setVisible(true);
+        this.imgPlay.setDisable(false);
+        this.imgPause.setDisable(true);
+        this.imgStop.setVisible(false);
+        this.imgPause.setVisible(false);
+        this.startButton.opacityProperty().set(0);
+        this.startButton.setDisable(false);
+        this.stopButton.setDisable(true);
+        this.resetButton.setDisable(true);
+
+    }
 }
