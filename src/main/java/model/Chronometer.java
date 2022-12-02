@@ -3,11 +3,15 @@ package model;
 
 import com.mysql.cj.conf.StringProperty;
 
+import java.time.LocalDate;
+
 public class Chronometer {
     private int hours;
     private int minutes;
     private int seconds;
     private int milliseconds;
+    private StringProperty time;
+    private LocalDate date;
     public static boolean stop;
 
     public Chronometer() {
@@ -19,6 +23,14 @@ public class Chronometer {
 
     }
 
+    public Chronometer(int hours, int minutes, int seconds, int milliseconds, LocalDate date) {
+        this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
+        this.milliseconds = milliseconds;
+        this.time = time;
+        this.date = date;
+    }
 
     public int getHours() {
         return hours;
@@ -34,6 +46,12 @@ public class Chronometer {
 
     public int getMilliseconds() {
         return milliseconds;
+    }
+    public String getTime() {
+        return String.format("%02d:%02d:%02d:%02d", this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
+    }
+    public LocalDate getDate() {
+        return date;
     }
 
     public void setHours(int hours) {
