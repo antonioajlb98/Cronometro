@@ -4,33 +4,34 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import model.Chronometer;
+import model.ChronometerDAO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Runnable, Initializable {
     private Chronometer c;
-    private List<Chronometer> Marcas;
+    private List<ChronometerDAO> Marcas;
     private Thread t;
     public MainController() {
         c = new Chronometer();
-        Marcas = new ArrayList<Chronometer>();
+        Marcas = new ArrayList<ChronometerDAO>();
     }
         @FXML
         private Label label;
         @FXML
-        private Button startButton,stopButton,resetButton,vueltaButton;
+        private Button startButton,stopButton,resetButton,vueltaButton,saveLapButton,podioButton;
         @FXML
-        private ImageView imgPlay,imgStop,imgPause,imgVuelta;
+        private ImageView imgPlay,imgStop,imgPause,imgSave,imgPodio,imgVuelta;
         @FXML
         private TableView <Chronometer> Vueltas;
         @FXML
@@ -39,10 +40,6 @@ public class MainController implements Runnable, Initializable {
         private TableColumn <Chronometer, String> tiempoVuelta;
 
 
-        @FXML
-        void exitButtonAction() {
-            System.exit(0);
-        }
 
         @FXML
         void resetButtonAction() {
@@ -109,17 +106,17 @@ public class MainController implements Runnable, Initializable {
                     }
                     Platform.runLater(() -> label.setText(String.format("%02d:%02d:%02d:%03d", c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds())));
                 } catch (InterruptedException e) {
-                    Chronometer aux = new Chronometer(-1,c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds(), LocalDate.now());
+                    ChronometerDAO aux = new ChronometerDAO(-1,c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds(), LocalDate.now());
                     c.setMilliseconds(0);
                     c.setSeconds(0);
                     c.setMinutes(0);
                     c.setHours(0);
                     this.Vueltas.setVisible(true);
                     this.Marcas.add(aux);
+                    Marcas.sort(Comparator.comparing(Chronometer::getSeconds));
                     this.CompleteTable();
                     Platform.runLater(() -> {
                         this.label.setText("00:00:00:00");
-
                     });
                 }
             }
@@ -153,5 +150,20 @@ public class MainController implements Runnable, Initializable {
         numeroVuelta.setCellValueFactory(cellData -> {
             return new SimpleObjectProperty<>(cellData.getValue().getDate());
         });
+    }
+    public void saveLap(){
+            if(!Marcas.isEmpty()){
+                Marcas.sort(Comparator.comparing(Chronometer::getSeconds));
+                Marcas.get(0).insert();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No hay vueltas");
+                alert.setContentText("No hay vueltas para guardar");
+                alert.showAndWait();
+            }
+    }
+    public void showPodio() throws IOException {
+        App.loadScene(new Stage(), "Podio","Podio",true,false);
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="490.0" style="-fx-background-color: #434349;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PodioController">
+   <children>
+      <TableView fx:id="Podio" prefHeight="380.0" prefWidth="502.0" style="-fx-background-color: #434349;">
+         <columns>
+            <TableColumn fx:id="Fecha" editable="false" prefWidth="243.0" resizable="false" style="-fx-background-color: #434349; -fx-alignment: CENTER; -fx-text-fill: #FFFFFF;" />
+            <TableColumn fx:id="Tiempo" editable="false" prefWidth="258.0" resizable="false" style="-fx-background-color: #434349; -fx-alignment: CENTER; -fx-text-fill: #FFFFFF;" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -15,7 +15,7 @@ import java.io.IOException;
 
         @Override
         public void start(Stage stage) throws IOException {
-            scene = new Scene(loadFXML("MainController"), 850, 480);
+            scene = new Scene(loadFXML("MainController"), 600, 465);
             stage.setScene(scene);
             stage.show();
         }
@@ -27,6 +27,19 @@ import java.io.IOException;
         protected static Parent loadFXML(String fxml) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
             return fxmlLoader.load();
+        }
+        public static void loadScene(Stage stage, String fxml, String title, boolean SaW, boolean isResizable) throws IOException {
+            stage.setScene(new Scene(loadFXML(fxml)));
+            stage.setTitle(title);
+            stage.setResizable(isResizable);
+            //new JMetro(Style.LIGHT).setScene(stage.getScene());
+            if (SaW)
+                stage.showAndWait();
+            else
+                stage.show();
+        }
+        public static void closeScene(Stage stage) {
+            stage.close();
         }
 
 
