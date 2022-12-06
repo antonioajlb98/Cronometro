@@ -12,8 +12,8 @@ import Connection.Connect;
 
 public class ChronometerDAO extends Chronometer{
 
-    private final static String INSERT = "INSERT INTO chronometer (id,date,time) VALUES (NULL,?,?)";
-    private final static String GETALL = "SELECT * FROM Marks";
+    private final static String INSERT = "INSERT INTO mark (id,date,time) VALUES (NULL,?,?)";
+    private final static String GETALL = "SELECT * FROM mark";
     public ChronometerDAO(int id, int hours, int minutes, int seconds, int milliseconds, LocalDate date) {
         super(id, hours, minutes, seconds, milliseconds, date);
     }
@@ -28,10 +28,9 @@ public class ChronometerDAO extends Chronometer{
         boolean insertado = false;
         if(con!=null){
             try {
-                String mark = String.format("%02d:%02d:%02d:%03d", this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
                 PreparedStatement ps = con.prepareStatement(INSERT);
                 ps.setString(1, this.getDate().toString());
-                ps.setString(2, mark);
+                ps.setString(2, this.getTime());
                 ps.executeUpdate();
                 insertado = true;
             } catch (SQLException e) {
@@ -54,7 +53,7 @@ public class ChronometerDAO extends Chronometer{
                     ChronometerDAO c = new ChronometerDAO();
                     c.setId(rs.getInt("id"));
                     c.setDate(LocalDate.parse(rs.getString("date")));
-                    c.setTime(rs.getString("time"));
+                    c.setTimeString(rs.getString("time"));
                     Marks.add(c);
                 }
             } catch (SQLException e) {

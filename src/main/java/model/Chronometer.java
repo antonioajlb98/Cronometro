@@ -12,6 +12,7 @@ public class Chronometer {
     private int seconds;
     private int milliseconds;
     private String time;
+    private String timeString;
     private LocalDate date;
     public static boolean stop;
 
@@ -51,6 +52,14 @@ public class Chronometer {
     public String getTime() {
         return String.format("%02d:%02d:%02d:%02d", this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
     }
+    public String getTimeString() {
+        return timeString;
+    }
+
+    public void setTimeString(String timeString) {
+        this.timeString = timeString;
+    }
+
     public LocalDate getDate() {
         return date;
     }

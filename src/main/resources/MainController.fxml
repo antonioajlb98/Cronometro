@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #8FAFFA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" style="-fx-background-color: #434349;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="136.0" layoutY="47.0" prefHeight="153.0" prefWidth="328.0" style="-fx-background-color: #8FAFFA;" text="00:00:00" textAlignment="CENTER">
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="121.0" layoutY="32.0" prefHeight="170.0" prefWidth="359.0" style="-fx-background-color: #434349;" text="00:00:00" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="50.0" />
          </font></Label>
-      <Button fx:id="startButton" layoutX="66.0" layoutY="278.0" mnemonicParsing="false" onAction="#startButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Start">
+      <Button fx:id="startButton" layoutX="38.0" layoutY="64.0" mnemonicParsing="false" onAction="#startButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Start">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="imgPlay" fitHeight="53.0" fitWidth="61.0" layoutX="66.0" layoutY="278.0" onMouseClicked="#startButtonAction">
+      <ImageView fx:id="imgPlay" fitHeight="53.0" fitWidth="61.0" layoutX="38.0" layoutY="64.0" onMouseClicked="#startButtonAction">
          <image>
             <Image url="@Imagenes/boton-de-play.png" />
          </image>
@@ -28,11 +28,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="stopButton" layoutX="66.0" layoutY="278.0" mnemonicParsing="false" onAction="#stopButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Stop">
+      <Button fx:id="stopButton" layoutX="38.0" layoutY="64.0" mnemonicParsing="false" onAction="#stopButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Stop">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="imgPause" fitHeight="53.0" fitWidth="61.0" layoutX="66.0" layoutY="278.0" onMouseClicked="#stopButtonAction">
+      <ImageView fx:id="imgPause" fitHeight="53.0" fitWidth="61.0" layoutX="38.0" layoutY="64.0" onMouseClicked="#stopButtonAction">
          <image>
             <Image url="@Imagenes/boton-de-pausa-de-video.png" />
          </image>
@@ -40,24 +40,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="resetButton" layoutX="239.0" layoutY="278.0" mnemonicParsing="false" onAction="#resetButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Reset" />
-      <ImageView fx:id="imgStop" fitHeight="53.0" fitWidth="61.0" layoutX="239.0" layoutY="278.0">
+      <Button fx:id="resetButton" layoutX="479.0" layoutY="64.0" mnemonicParsing="false" onAction="#resetButtonAction" opacity="0.0" prefHeight="53.0" prefWidth="61.0" text="Reset">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fx:id="imgStop" fitHeight="53.0" fitWidth="61.0" layoutX="479.0" layoutY="64.0" onMouseClicked="#resetButtonAction">
          <image>
             <Image url="@Imagenes/boton-detener.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <TableView fx:id="Vueltas" layoutX="364.0" layoutY="178.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <TableView fx:id="Vueltas" layoutX="-1.0" layoutY="255.0" prefHeight="224.0" prefWidth="618.0" style="-fx-background-color: #434349;">
          <columns>
-            <TableColumn fx:id="numeroVuelta" prefWidth="96.79998779296875" text="Vuelta nº" />
-            <TableColumn fx:id="tiempoVuelta" prefWidth="102.4000244140625" text="Tiempo" />
+            <TableColumn fx:id="numeroVuelta" editable="false" prefWidth="302.0" resizable="false" style="-fx-background-color: #434349; -fx-alignment: CENTER; -fx-text-fill: #FFFFFF;" />
+            <TableColumn fx:id="tiempoVuelta" editable="false" prefWidth="306.0" resizable="false" style="-fx-background-color: #434349; -fx-alignment: CENTER; -fx-text-fill: #FFFFFF;" />
          </columns>
       </TableView>
-      <Button fx:id="vueltaButton" layoutX="154.0" layoutY="277.0" mnemonicParsing="false" onAction="#vueltaAction" opacity="0.0" prefHeight="53.0" prefWidth="62.0" text="Button">
+      <Button fx:id="vueltaButton" layoutX="269.0" layoutY="168.0" mnemonicParsing="false" onAction="#vueltaAction" opacity="0.0" prefHeight="53.0" prefWidth="62.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="imgVuelta" fitHeight="54.0" fitWidth="62.0" layoutX="154.0" layoutY="278.0" onMouseClicked="#vueltaAction">
+      <ImageView fx:id="imgVuelta" fitHeight="54.0" fitWidth="62.0" layoutX="269.0" layoutY="167.0" onMouseClicked="#vueltaAction">
          <image>
             <Image url="@Imagenes/actualizar-el-circulo-de-flechas-con-rotacion-en-el-sentido-de-las-agujas-del-reloj.png" />
          </image>
@@ -65,5 +71,29 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Button fx:id="saveLapButton" layoutX="479.0" layoutY="156.0" mnemonicParsing="false" onAction="#saveLap" opacity="0.0" prefHeight="53.0" prefWidth="62.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fx:id="imgSave" fitHeight="54.0" fitWidth="62.0" layoutX="483.0" layoutY="156.0" onMouseClicked="#saveLap" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/guardar-el-archivo.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgPodio" fitHeight="54.0" fitWidth="62.0" layoutX="38.0" layoutY="168.0" onMouseClicked="#showPodio" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/podio.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Button fx:id="podioButton" layoutX="35.0" layoutY="169.0" mnemonicParsing="false" onAction="#showPodio" opacity="0.0" prefHeight="53.0" prefWidth="61.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
