@@ -1,5 +1,4 @@
 import javafx.application.Platform;
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,6 +84,9 @@ public class MainController implements Runnable, Initializable {
             this.imgPlay.setDisable(false);
             this.imgPause.setDisable(true);
             this.imgStop.setVisible(true);
+            this.imgVuelta.setVisible(false);
+            this.vueltaButton.setDisable(true);
+            this.imgVuelta.setDisable(true);
         }
 
         @Override
@@ -92,8 +94,8 @@ public class MainController implements Runnable, Initializable {
             while(!c.stop){
                 try {
                     Thread.sleep(1);
-                    c.setMilliseconds(c.getMilliseconds() + 1);
-                    if(c.getMilliseconds() == 500){
+                    c.setMilliseconds(c.getMilliseconds() + 2);
+                    if(c.getMilliseconds() == 1000){
                         c.setMilliseconds(0);
                         c.setSeconds(c.getSeconds() + 1);
                     }
@@ -105,9 +107,9 @@ public class MainController implements Runnable, Initializable {
                         c.setMinutes(0);
                         c.setHours(c.getHours() + 1);
                     }
-                    Platform.runLater(() -> label.setText(String.format("%02d:%02d:%02d:%02d", c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds())));
+                    Platform.runLater(() -> label.setText(String.format("%02d:%02d:%02d:%03d", c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds())));
                 } catch (InterruptedException e) {
-                    Chronometer aux = new Chronometer(c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds(), LocalDate.now());
+                    Chronometer aux = new Chronometer(-1,c.getHours(), c.getMinutes(), c.getSeconds(), c.getMilliseconds(), LocalDate.now());
                     c.setMilliseconds(0);
                     c.setSeconds(0);
                     c.setMinutes(0);

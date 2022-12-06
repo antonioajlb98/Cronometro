@@ -6,11 +6,12 @@ import com.mysql.cj.conf.StringProperty;
 import java.time.LocalDate;
 
 public class Chronometer {
+    private int id;
     private int hours;
     private int minutes;
     private int seconds;
     private int milliseconds;
-    private StringProperty time;
+    private String time;
     private LocalDate date;
     public static boolean stop;
 
@@ -23,12 +24,12 @@ public class Chronometer {
 
     }
 
-    public Chronometer(int hours, int minutes, int seconds, int milliseconds, LocalDate date) {
+    public Chronometer(int id, int hours, int minutes, int seconds, int milliseconds, LocalDate date) {
+        this.id = id;
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
         this.milliseconds = milliseconds;
-        this.time = time;
         this.date = date;
     }
 
@@ -54,6 +55,10 @@ public class Chronometer {
         return date;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setHours(int hours) {
         this.hours = hours;
     }
@@ -68,6 +73,15 @@ public class Chronometer {
 
     public void setMilliseconds(int milliseconds) {
         this.milliseconds = milliseconds;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public static void setStop(boolean stop) {
